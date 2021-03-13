@@ -1,6 +1,8 @@
 # MIDS Applicant Digital Assistant 
 MIDS W210 Capstone Final Project
+
 Steve Dille, Kevin Kory, Nicole Yoon, Joanna Yu
+
 Spring 2021
 
 ## Introduction 

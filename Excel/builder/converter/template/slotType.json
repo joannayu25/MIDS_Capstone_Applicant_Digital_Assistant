@@ -1,0 +1,19 @@
+{
+  "name": {{ name }},
+  "description": {{ description }},
+  "valueSelectionStrategy": {{ valueSelectionStrategy }},
+  "enumerationValues": [
+    {% for value in enumerationValues %}
+    {
+      "value": {{ value[0] }}
+{%- if value|length > 1 -%}
+      ,"synonyms":[{% for v in value[1:] %}
+{{ v }}
+{%- if not loop.last -%},{%- endif %}
+{% endfor %}]
+{%- endif %}
+    }
+    {%- if not loop.last -%},{%- endif %}
+    {% endfor %}
+  ]
+}
