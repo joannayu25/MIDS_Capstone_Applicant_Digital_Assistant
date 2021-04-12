@@ -8,7 +8,7 @@ UC Berkeley MIDS W210 Capstone Final Project, Spring 2021
 The MIDS Applicant Advisor Digital Assistant targets graduate school applicants and provides a conversational AI solution to bridge the information gap between applicants and university program admissions teams. Using unstructured data based on key admissions facts and insider advice from students, we are applying natural language processing powered by Amazon Lex for our MVP which offers applicants easier access to previously hard to gather data to make informed decisions on MIDS application. We have already launched the first chatbot on the midsdvisor.com website to UC Berkeley MIDS candidates as our initial target user group.
 
 ## Infrastructure
-
+![pipeline_diagram](/Images/infrastructure.jpg)
 * Our website, **midsadvisor.com**, is hosted on WordPress. Javascript is used to connect to the Lex web user interface. When the user clicks “Chat Now”, the chatbot pops up as an iframe on the website. 
 * **CloudWatch** maintains collect monitoring and operational data. The logs from CloudWatch are used for debugging purposes as well as extracting metric information on the chatbot. 
 * **Lambda** is used to create custom functions in Lex. Lambda is a very versatile serverless compute tool that allows us to execute code in response to triggers, such as changes in data or actions by users. 
