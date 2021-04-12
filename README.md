@@ -23,13 +23,14 @@ The digital assistant is powered by a variety of sources:
 * Insider advice from students
 
 ## Our Model
-### AI as A Service
-Amazon Lex - AI as a Service for building conversational interfaces into any application using voice and text.
+### AI-as-a-Service Model
+**Amazon Lex** - AI as a Service for building conversational interfaces into any application using voice and text.
+
 Advantage:
-Cost-Effective
-Short Time to Market
-Scales Automatically
-Leverages Alexa NLP to Create Speech Language Understanding System
+* Cost-Effective
+* Short Time to Market
+* Scales Automatically
+* Leverages Alexa NLP to Create Speech Language Understanding System
 
 ### Model Limitation
 *Limitations*
@@ -54,10 +55,10 @@ Setup requirement:
 
 AWS CLI 
 
-Create an S3 bucket and update *sourcebucket* in *deployment.sh* with the bucket name
+Create an S3 bucket and update `sourcebucket` in `*deployment.sh` with the bucket name
 
-Run ./deployment.sh 
+Run `./deployment.sh` 
 
-This template runs CloudFormation in the us_east1 region. 
+This template runs CloudFormation in the `us_east1` region. 
 
 Acknowledgement: this work is based on the work of Cyrus Wong (https://github.com/wongcyrus/ExcelLexBot)

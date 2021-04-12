@@ -162,7 +162,6 @@ def deadline(intent_request):
     affirm = ['yes', 'yeah', 'yea', 'y', 'ye', 'sure', 'of course', 'you bet', 'i think so', 'yep', 'yup', 'okay', 'ok', 'k', 'absolutely']
     if fall_deadline.lower() in affirm:
         msg = 'I am glad you are interested in the application deadline, '+user_name+'! The Fall semester will start '+str(fall21_start)+'. The deadline is '+str(fall21_final)+'. There is still '+str(months_deadline)+' months to apply! Would you like to find out about the application requirement?'
-        #elicit_slot(intent_request['sessionAttributes'] , intent_request['currentIntent']['name'], msg)
         return confirm_intent(
             intent_request['sessionAttributes'],
             'Application_GeneralRequirements',
