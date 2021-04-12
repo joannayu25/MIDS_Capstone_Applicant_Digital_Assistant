@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >-
+  MIDS Chatbot - apply deadline intent
+Resources:
+  applydeadline:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python2.7
+      CodeUri: .
+      Description: >-
+        MIDS Chatbot - apply deadline intent
+      MemorySize: 128
+      Timeout: 10
+      Role: 'arn:aws:iam::098766315756:role/service-role/apply_deadline-role-jk59xbak'
+      Tags:
+        'lambda-console:blueprint': lex-make-appointment-python

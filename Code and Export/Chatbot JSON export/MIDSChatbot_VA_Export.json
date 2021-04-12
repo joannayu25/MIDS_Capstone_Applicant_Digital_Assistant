@@ -1,0 +1,4343 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "MIDSChatbot_VA",
+    "version": "57",
+    "intents": [
+      {
+        "name": "MIDS_Duration_FullTime",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "full-time",
+          "full time",
+          "how quickly can i finish mids if do full time"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "You will finish in 12 months if you take 3 classes a term and 16 months if you reduce your class load to 2 after the first term."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_Recommend_Length",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How long should the letter be",
+          "Is there word limit on the recommendation letter",
+          "Length of recommendation letter"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "There is no limit on the length of the recommendation letter, but remember that true value of a good recommendation letter comes from content rather than length. Generally, recommendation letter will not exceed two pages (single spaced, 12 font size), but even short recommendations can be powerful and provide objective support to the admissions team on how great of a candidate you are."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Type \"Checklist\" to see the application requirements again, or \"Start\" to return to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSRecommendationLetter"
+          }
+        ]
+      },
+      {
+        "name": "Careers_advance_career",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "advance career",
+          "advance",
+          "advancing",
+          "current career",
+          "current job",
+          "yes",
+          "yep"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"title\":\"Click from the following to learn more about career opportunities:\",\"buttons\":[{\"text\":\"Jobs\",\"value\":\"Jobs\"},{\"text\":\"Companies\",\"value\":\"Companies\"},{\"text\":\"Career services\",\"value\":\"Career services\"},{\"text\":\"Alumni network\",\"value\":\"Alumni network\"},{\"text\":\"Industry contacts\",\"value\":\"Industry contacts\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "MIDS provides the experience, credentials, and network to advance careers within the data science field."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "careers_advance_career"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_jobs"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_companies"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_career_services"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_alumni_network"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_industry_contacts"
+          }
+        ]
+      },
+      {
+        "name": "Greeting",
+        "version": "13",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:098766315756:function:greeting",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "Hi",
+          "Hello",
+          "Are you there"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Hi! What is your name?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "UserName"
+          }
+        ],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Nice to meet you, {UserName}. Just so you know, I am ready to help you in a few popular areas shown below or you can just ask questions in English. If you ever want to return to this menu just type \"start\"."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSOrBootcampApply",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yes",
+          "sure",
+          "i sure did",
+          "affirmative",
+          "ok"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "OK, I think you are very serious about data science and want the very best education. That makes you a better candidate for the full master's program rather than the condensed boot camp. I think you may have decided. Here is the application page https://apply.datascience.berkeley.edu/signup"
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "I’m sure the admission’s department will enjoy hearing from you. Ask me another question if you care to or type start to begin again."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootApply"
+          }
+        ]
+      },
+      {
+        "name": "MidsOrBootcampTimeNo",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "no",
+          "i dont know",
+          "I don't know",
+          "not sure"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "A Master’s degree in Data Science at UC Berkeley will take a minimum of 12 months attending full-time and 20 months part-time. So a boot camp is a better fit for your desired time frame."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Ask me another question about MIDS if you care to."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootCost"
+          },
+          {
+            "name": "MIDSBootFinalNo"
+          }
+        ],
+        "outputContexts": []
+      },
+      {
+        "name": "MIDSDiploma",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Will my diploma denote that I earned my degree online",
+          "online diploma",
+          "will my degree be considered an online degree",
+          "is my degree the same as an on campus degree"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Students receive the same diploma as students in other on-campus UC Berkeley graduate programs, with no indication they earned their degree through an online program. Students are invited to participate in on-campus graduation ceremonies, as well."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSCost",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How much is it to attend MIDS",
+          "How much does a class cost at MIDS",
+          "How much does MIDS cost",
+          "MIDS cost",
+          "how much is a masters at Berkeley",
+          "Berkeley masters cost",
+          "tuition",
+          "how much is tuition",
+          "what is the tuition",
+          "what is the cost"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "MIDS costs $8,136 per class and 9 classes are required to graduate."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MainMenu",
+        "version": "8",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "start",
+          "What should I ask",
+          "What can you tell me",
+          "What can I ask",
+          "Main Menu",
+          "Main page",
+          "What do you know",
+          "Main",
+          "Menu"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Please select an area to explore\",\"title\":\"Current MIDS Subject Areas\",\"buttons\":[{\"text\":\"MIDS vs. Bootcamp \",\"value\":\"MIDS or Bootcamp\"},{\"text\":\"Application Requirements\",\"value\":\"Applicant Checklist\"},{\"text\":\"Curriculum Difficulty\",\"value\":\"Curriculum Difficulty\"},{\"text\":\"Career Prospects\",\"value\":\"Career Prospects\"},{\"text\":\"Ask Other Questions\",\"value\":\"Other\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Welcome to the MIDS Digital Assistant, which is being programmed to answer questions about the UC Berkeley Master in Information and Data Science (MIDS) degree. This assistant is under construction and programmed to help you in a few areas shown below today. Just select one. If you ever want to return to this menu, just type \"start.\""
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_International_TOEFLReq",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "No",
+          "Nah",
+          "nope",
+          "It does not",
+          "doesn't apply"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "In this case, please be prepared to submit either TOEFL or IELTS score taken within 18 months of the start of the classes. The school code for UC Berkeley is 4833 and the department code for the I School is 99. Please note that test scores must be sent directly from the testing authorities."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Ask me other questions about the application process for international applicants, or type \"Checklist\" to see the application requirements."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "InternationalApplicant"
+          },
+          {
+            "name": "MIDSApplication_International_English"
+          }
+        ]
+      },
+      {
+        "name": "BestClass",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what are the best classes in mids",
+          "best classes",
+          "best courses",
+          "most popular classes or courses"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Determining the best classes in MIDS is a tough question as students have so many areas of interest and goals. Past students would say if you asked this question on MIDS Slack channel, you would get votes for every class offered by someone."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Here are some classes that many students have spoken highly of. Introduction to Data Science Programming is an excellent way to learn the Python skills you need to be a data scientist. Applied Machine Learning is something most everyone is excited to learn about and it is often the first exposure many have had to machine learning. From the advanced courses, Machine Learning at Scale is very time consuming but students really appreciate how they learn to apply machine learning to big data using parallelization and Spark. Experiments and Causal Inference is also highly thought of as it applies what you learned in statistics to doing field experiments."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Those are some popular classes, but if you asked someone else, you would see others liked different classes."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_International_OneyrinUS",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "one year in U.S university"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Perfect! In this case, you do not need to take the TOEFL or IELTS, nor submit a separate document to verify English proficiency. Instead, you must submit an official transcript from US university you attended, in addition to the translated transcript from your undergraduate school."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Ask me other questions about the application process for international applicants, or type \"Checklist\" to see the application requirements."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSApplication_International_English"
+          }
+        ]
+      },
+      {
+        "name": "TestEmailCollectAddress",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yes",
+          "sure",
+          "OK"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.EmailAddress",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Please enter your email address."
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "emailaddress"
+          }
+        ],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Thank you. An admissions advisor will be in touch about your question."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Please feel free to ask me more questions about MIDS or type main menu to go to the beginning menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "EnterEmail"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_comp_sci_yes",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yes",
+          "kind of",
+          "somewhat",
+          "yep",
+          "yeah",
+          "computer programming",
+          "data science",
+          "lots of experience"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"title\":\"How much time can you commit to the program per week?\",\"buttons\":[{\"text\":\"Less than 10 hours per week\",\"value\":\"Less than 10 hours per week\"},{\"text\":\"10-20 hours per week\",\"value\":\"10-20 hours per week\"},{\"text\":\"20-30 hours per week\",\"value\":\"20-30 hours per week\"},{\"text\":\"30 or more hours per week\",\"value\":\"30 or more hours per week\"},{\"text\":\"I don't know\",\"value\":\"I don't know\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "That will make the program more feasible for you."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Some students with a programming background still take the “Introduction to Data Science Programming” to refresh their programming and Python skills."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "If you choose to opt out of the introductory course, you will be able to take an additional advanced elective."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_background"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_time"
+          }
+        ]
+      },
+      {
+        "name": "lambda_deadline",
+        "version": "4",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:098766315756:function:apply_deadline",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "when can i apply",
+          "when is the next application deadline",
+          "how much time do i have until the next deadline",
+          "how long is until the next application deadline",
+          "when is MIDS accepting applications"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "There are 3 application cycles each year - spring, summer, and fall. The deadline for the summer semester is passed. Would you like to know more about the fall semester?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "fall_deadline"
+          }
+        ]
+      },
+      {
+        "name": "General_joke",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "tell me a joke",
+          "tell me something funny",
+          "i want to hear a joke",
+          "joke"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "I don't have a humor setting."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Would you like to work on that? MIDS can help you! :)"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Community",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How does MIDS foster a sense of community",
+          "Do the students have a sense of community"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "MIDS is very much like attending a university except without the commute and parking hassles. Each week you attend live class where you see the other students. Classes are kept to a 15 student limit so you are not lost in a crowd. There are group projects in classes, study groups, slack channels and the spirit is non-competitive as grades are not the major goal. Before graduation, each student participate sin a one week immersion live on campus or in a handful of other cities."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_AdmissionsCycle_NotSoon",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "No",
+          "Not yet",
+          "Nope"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "You still have good amount of time to plan and gather materials needed for your application. Get an early start on your application here! https://apply.datascience.berkeley.edu/signup"
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Please visit us anytime for questions you come across during your admissions process!"
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Type \"Start\" to see common subjects that other MIDS applicants have question about."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Type \"Checklist\" to see the application requirements and \"Start\" to go back to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDS_applyingSoon"
+          }
+        ]
+      },
+      {
+        "name": "Application_TestScore_NoStats",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "No",
+          "Nah",
+          "that's ok",
+          "no thanks",
+          "nope",
+          "I'm fine"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Ok. Since GRE/GMAT score is not a requirement, we advise that you prioritize your bandwidth for writing strong personal statements, coordinating recommendation letters, and double, triple checking the required documents instead."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Type \"Checklist\" to see the application requirements or type \"Start\" to go to the main menu."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Ask me more questions, or type \"Start\" to go to the main menu!"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "TestScores"
+          }
+        ]
+      },
+      {
+        "name": "EasiestClasses",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "easiest class",
+          "easy courses",
+          "easiest class in mids"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "According to students, most of them would tell you that the easiest class is first term Research Design and Applications for Data and Analysis. We refer to it as RDADA."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Professor Steven Weber is excellent and the asynch videos are really thought provoking. Professor Mike Rivera. who teaches many of the live synchronous session is really good too."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "But the course is not a programming or statistics numbers course so the number of hours is lighter than most classes which take 10-20 hours a week."
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "However, since 2 classes are required first term and your second class is likely to be Statistics for Data Science or Data Science Programming (Python), both of which are more time consuming and quantitative, you'll be challenged enough."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSCurriculum",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Curriculum"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return to go to the prior menu or exit to start chat again\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The MIDS curriculum is best understood by reviewing a page from UC Berkeley in the last message below. Pay particular attention to the short videos on each class by the professors you will be learning from each week."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Each MIDS class, on an important data science topic, takes place over 15 weeks. Students typically will typically spend 15-20 hours a week on assignments, lectures and live sessions for each class. The two most rigorous elective classes, which most believe are scalable machine learning and natural language processing, go really deep and some students spend 25-30 hours per week on each class."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "If you compare this to bootcamps, one class over almost 4 months for 15 hours a week in MIDS is what many bootcamps advertise as their whole curriculum covering all the buzz words in data science briefly."
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "There is a reason this is a master's degree. You will graduate and be seen as a top tier job candidate with broad and deep skills. There is no easy button to learning data science. It takes time, study and practice not a series of tutorials packaged together as a program."
+            },
+            {
+              "groupNumber": 5,
+              "contentType": "PlainText",
+              "content": "You can check out the curriculum here:  https://ischoolonline.berkeley.edu/data-science/curriculum/"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootHardCurriculum"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 5000,
+            "name": "MIDSBootApply"
+          }
+        ]
+      },
+      {
+        "name": "GeneralIsMIDSRealBerkeleyDegree",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Is the MIDS degree the same as getting a master's degree in person at Berkeley",
+          "is this the same as an in person degree",
+          "is this degree just like an on campus degree"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The UC Berkeley School of Information offers four degrees: professional master’s degrees in information management, data science, and cybersecurity and an academic doctoral degree."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "MIDS is a master's degree from UC Berkeley. As an applicant, you must be accepted to graduate school at UC Berkeley and you will also graduate with a degree from UC Berkeley. You can even attend the graduation ceremony if you would like to."
+            }
+          ]
+        }
+      },
+      {
+        "name": "TestEmailCollect",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "test email collect",
+          "average salary of graduates",
+          "average salary of mids grads"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Im sorry, I don't have exact information on that topic. It's best to speak to an admissions advisor about that. Would you like to enter your email address to be contacted (yes/no)?"
+            }
+          ]
+        },
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 270,
+            "name": "EnterEmail"
+          }
+        ]
+      },
+      {
+        "name": "MIDSAdmissionRequirements",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "What is required to be admitted to MIDS",
+          "Do I need a college degree to attend MIDS",
+          "What kind of grades or GPA do I need to be admitted to MIDS"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "To be eligible to attend the MIDS master’s program, you must have a bachelor's degree with a strong scholastic record — normally well above a 3.0 GPA."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Here is the admissions page: https://ischoolonline.berkeley.edu/admissions/"
+            }
+          ]
+        }
+      },
+      {
+        "name": "lambda_help",
+        "version": "4",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:098766315756:function:help",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "help",
+          "i need help"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.EmailAddress",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Please enter email."
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "name": "email"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Would you like to leave your email?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "name": "leave_email"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Please type 'start' if you would like to navigate to the main menu to see the list of topics. Or are you looking to connect with an agent?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "need_agent"
+          }
+        ]
+      },
+      {
+        "name": "General_broad_skills",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what will I learn",
+          "learn",
+          "skills",
+          "key skills",
+          "what skills do I learn",
+          "will I learn statistics",
+          "statistics",
+          "machine learning",
+          "research",
+          "statistical analysis"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The core curriculum focuses on the following key skills:"
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Research Design, Data Engineering, Machine Learning, Mining and Exploring,Data Visualization,Ethics and Privacy,Statistical Analysis,CommunicatingResults"
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSOrBootcampTimeTryAgain",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "no",
+          "i dont know",
+          "Not sure",
+          "dont think so"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Would you like to continue this short tutorial on making the decision to attend MIDS or a bootcamp (yes or no)?"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootCost"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootFinalNo"
+          }
+        ]
+      },
+      {
+        "name": "General_address",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Berkeley address",
+          "MIDS address",
+          "where is MIDS located",
+          "where is the program located",
+          "where is Berkeley",
+          "where is the mailing address",
+          "where is the campus",
+          "where is the campus located"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "UC Berkeley islocated in the city of Berkeley, California. The MIDS program is completelyonline, but there are many MIDS students and alumni in the Bay area nearcampus. "
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "The postal address is: School of InformationUniversity of California, Berkeley102 South Hall # 4600Berkeley, CA 94720-4600"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Other",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Other"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "There are a number of factual, less conversational questions the MIDS Digital Assistant can answer now, too. You can just type natural language queries and it will understand questions about: the cost of MIDS, GRE and TOEFL requirements, hardest MIDS classes, how long it takes to graduate, and student networking, with more questions coming."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Curriculum_time_low",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "not that much",
+          "I don't know",
+          "less than ten hours per week",
+          "ten to twenty hours per week"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select any options below or exit\",\"title\":\"Would you like to learn more about other types of academic support for students?\",\"buttons\":[{\"text\":\"Office hours\",\"value\":\"Office hours\"},{\"text\":\"Group project work\",\"value\":\"Group project work\"},{\"text\":\"Flipped classroom model\",\"value\":\"Flipped classroom model\"},{\"text\":\"Optional content to prepare\",\"value\":\"Optional content to prepare\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Most individual courses take between 10-20 hours per week, with advanced electives potentially requiring more of a commitment."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Most students who can only commit less than 15 hours a week will take 1 course per semester to make the course load more manageable."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_time"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_office_hours"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_group_project"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_flipped_classroom"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_optional_content"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_end"
+          }
+        ]
+      },
+      {
+        "name": "Careers_ind_companies",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "companies",
+          "what companies hire MIDS graduates",
+          "where will I work after graduation",
+          "what companies are hiring",
+          "where can I get a job",
+          "types of companies",
+          "cool companies",
+          "coolest companies"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Here is a list ofselect employers from recent MIDS graduates:"
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Airbnb, Amazon,Apple, Autodesk, BCG, Capital One, Facebook, Google, NASA, PWC, Twilio, Workday"
+            }
+          ]
+        }
+      },
+      {
+        "name": "General_thumbs_up",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Thumbs Up",
+          "Great",
+          "Thank you",
+          "Thanks",
+          "I appreciate the information"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "I am glad you are enjoying the conversation."
+            }
+          ]
+        }
+      },
+      {
+        "name": "General_remote_classes",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "are all classes online",
+          "are all classes remote",
+          "are classes in person",
+          "are any classes in person",
+          "can I take a class in person",
+          "remote class",
+          "what are the classes like",
+          "are there lectures",
+          "can I attend classes in person",
+          "are there hybrid classes",
+          "are there hybrid courses"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "All of MIDS courses are conducted online. MIDS feature lectures and course work designed by Berkeley faculty and expertly converted into an online format."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Students complete self-paced, asynchronous course work each week that prepares them for the weekly live session.  During class, students discuss the weekly course work and participate in group problem-solving."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_AdmissionsCycle",
+        "version": "13",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "When is the application due",
+          "When are the application cycle",
+          "When is the application deadline",
+          "When is the start date",
+          "When is the next application cycle",
+          "When does the program start",
+          "Admissions cycle",
+          "when does the next term start",
+          "Next application term",
+          "next deadline",
+          "When do I need to apply by",
+          "When should I apply by"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The UC Berkeley School of Information’s online master’s programs offer three start dates throughout the year (January, May and September). Final application deadlines are approximately 3.5 months before the start of a term.  Please visit https://ischoolonline.berkeley.edu/admissions to see our upcoming cohort start dates and admissions requirements."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Do you plan on applying in the next 30 days?"
+            }
+          ]
+        },
+        "outputContexts": [
+          {
+            "turnsToLive": 2,
+            "timeToLiveInSeconds": 60,
+            "name": "MIDS_applyingSoon"
+          }
+        ]
+      },
+      {
+        "name": "Application_Recommend_YesProf",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "No",
+          "Nah",
+          "Nawww",
+          "I don't",
+          "I do not",
+          "that's ok",
+          "I'm fine"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Great! We prefer that letters come from your current direct supervisor or a former employer. The title or status of those you select is not important."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "The best recommendations would include details on your recommender's personal experience from having closely worked with you. Specific details on the impact of your work as well as why they believe you to be a successful candidate for the program will make the recommendation more solid."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Ask me more questions about recommendation letter, or type \"Checklist\" to see the application requirements again, or \"Start\" to return to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Recommendation_noProf"
+          }
+        ]
+      },
+      {
+        "name": "Application_TestScore_Comparison",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yeap",
+          "yeah",
+          "yes",
+          "yea",
+          "sure",
+          "true",
+          "ok"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Please note that these statistics DO NOT signify a cutoff point for admission to MIDS."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "CustomPayload",
+              "content": "Median Statistics of MIDS Student Class:\n\n- 79th GMAT Quantitative Score Percentile\n- 81st GMAT Verbal Score Percentile\n- 88th GRE Quantitative Score Percentile\n- 89th GRE Verbal Score Percentile\n"
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "As we said, submitting your GRE/GMAT score is optional. Do you have reasons to believe that submission of your GRE/GMAT score will help the admissions team to see you as a stronger candidate?"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "TestScores"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 3,
+            "timeToLiveInSeconds": 45,
+            "name": "TestScore_Helps"
+          }
+        ]
+      },
+      {
+        "name": "Application_Recommend_avoid",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Friend",
+          "family friend",
+          "family",
+          "Co-worker",
+          "family or friend",
+          "subordinate"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Generally, letters of recommendation from co-workers, someone you have supervised, or personal and family friends are inappropriate and can be detrimental to your application."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Purpose of the recommendation is to hear from someone who can objectively speak about your qualities and performance within an organization. Even though their recommendation may be 100% genuine, it may pose our admissions team with challenges on determining the objectivity of the letter."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Do you have a personal circumstance where receiving a recommendation from a supervisor or employer is not possible?"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSRecommendationLetter"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 2,
+            "timeToLiveInSeconds": 90,
+            "name": "Recommendation_noProf"
+          }
+        ]
+      },
+      {
+        "name": "Careers_c_jobs",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "jobs"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"\",\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Here is a list of select job titles from recent MIDS graduates:"
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Data Analyst, Data Science Manager, DataScientist, Policy Analyst, Product Manager, Sales Engineer, Software Engineer, TechnologyConsultant, UX Designer, UX Researcher"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Careers_jobs"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "careers_d_return"
+          }
+        ]
+      },
+      {
+        "name": "Careers_b_switch_career",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "switch career",
+          "switch",
+          "switch job",
+          "new job",
+          "new",
+          "new career",
+          "different job",
+          "I'm not sure",
+          "idk",
+          "I don't know"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"title\":\"Click from the following to learn more about career opportunities:\",\"buttons\":[{\"text\":\"Jobs\",\"value\":\"jobs\"},{\"text\":\"Companies\",\"value\":\"Companies\"},{\"text\":\"Career services\",\"value\":\"Career services\"},{\"text\":\"Alumni network\",\"value\":\"Alumni network\"},{\"text\":\"Industry contacts\",\"value\":\"Industry contacts\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "MIDS provides the experience, credentials, and network to switch careers and become a data scientist."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "careers_switch_career"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_alumni_network"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_career_services"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_companies"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_industry_contacts"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_jobs"
+          }
+        ]
+      },
+      {
+        "name": "Application_Recommend_NoProf",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Yeah",
+          "Yes",
+          "ok",
+          "sure",
+          "yea"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "In this case, we strongly advise that your recommender (who is not your supervisor or employer) discuss in depth the circumstance in which they were able to observe and assess you to be a strong candidate for MIDS to make their recommendation. Adding concrete examples that support their recommendation will help mitigate admission team's concern around the letter's objectivity. However, adding compliments without specific support can negatively impact the value of a recommendation letter."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "I hope you found our tips helpful. Ask me more questions about recommendation letter, or type \"Checklist\" to see the application requirements, or \"Start\" to return to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Recommendation_noProf"
+          }
+        ]
+      },
+      {
+        "name": "MIDSOnline",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "is MIDS an online degree",
+          "online",
+          "virtual",
+          "is this program online",
+          "do i attend classes online or in person",
+          "are classes virtual or in person",
+          "live classes",
+          "in person classes"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Berkeley MIDS is an online program. Students attend weekly live (\"synchronous\") sessions with classmates and instructors via an online platform as well as engaging with online (\"asynchronous\") videos and assignments on their own time."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSOrBootcamp",
+        "version": "10",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Should I attend MIDS or a data science boot camp",
+          "MIDS or bootcamp",
+          "masters degree or bootcamp"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The decision about whether to attend graduate school to earn a master's degree in data science or whether to attend a shorter, less expensive bootcamp is one which most applicants think deeply about. I have a short series of questions that may help you decide which is right for you."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "First let me ask, do you have undergraduate degree ?"
+            }
+          ]
+        },
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootGPA"
+          }
+        ]
+      },
+      {
+        "name": "Application_GeneralRequirements",
+        "version": "14",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "What do I need for the application",
+          "What do I need to submit for the application",
+          "What are the application requirements",
+          "What is needed to complete the application",
+          "Applicant Checklist",
+          "Checklist",
+          "What do you need to do to apply",
+          "What is needed to apply",
+          "Link to application"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Please select from below for more detail\",\"title\":\"Application Requirements\",\"buttons\":[{\"text\":\"Letters of Recommendation\",\"value\":\"Letters of Recommendation\"},{\"text\":\"Test Scores\",\"value\":\"Test Scores\"},{\"text\":\"International Applicants\",\"value\":\"International Applicants\"},{\"text\":\"Admissions Cycle\",\"value\":\"Admissions Cycle\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "CustomPayload",
+              "content": "To complete your application, you must submit the following:\r\n\r\n- Online application https://apply.datascience.berkeley.edu/signup\r\n- Official transcripts from all educational institutions attended\r\n- Statement of Purpose and additional admissions statements\r\n- Two professional letters of recommendation\r\n- Current resume\r\n- TOEFL Scores (if applicable)\r\n- Application fee of $120 for domestic applicants or $140 for international applicants\r\n- GRE or GMAT scores (optional)\r\n\r\nDo you have more questions on the application requirements?  Select from following topics we can chat more about. To ask a different question, please type \"start\", and to return to this menu, type \"application\" "
+            }
+          ]
+        },
+        "outputContexts": []
+      },
+      {
+        "name": "Application_Recommend_Foreign",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "foreign language recommendation letter",
+          "recommendation letter non-english",
+          "recommendation letter non english",
+          "recommendation letter in spanish",
+          "recommendation letter in chinese",
+          "Can recommendation letter be in a foreign language",
+          "Does my recommendation letter need to be in english"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Unfortunately, recommendation letters need to be submitted in English only. If you strongly believe that the best recommendation letters will come from those who do not speak English, you may submit a translated version of the recommendation letter. Translation must be provided by an American Translation Association certified translator."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSRecommendationLetter"
+          }
+        ]
+      },
+      {
+        "name": "MIDSProfessors",
+        "version": "11",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "who teaches the mids classes",
+          "what are the professors like",
+          "who are the teachers in mids",
+          "Professors"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "UC Berkeley is consistently ranked as the top public university in the world. https://news.berkeley.edu/2020/10/20/uc-berkeley-still-no-1-public-fourth-best-globally-in-u-s-news-rankings/. That means Berkeley can recruit the very best professors and industry expert instructors to MIDS. The quality and depth of the teaching will exceed that of bootcamps. Here are a few examples."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "One popular instructor is Todd Holloway, who teaches Applied Machine Learning (W207). Todd is currently VP of consumer data science for Nike, was Director of Content Science at Netflix, where he worked on the recommender and was Head of Data Science at Trulia, where he made major improvements to their housing price prediction models. https://www.linkedin.com/in/toddmholloway/"
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Dr. Paul Laskowski, a professor in the School of Information, developed the Python for Data Science course and currently teaches Statistics. Paul earned his PhD from UC Berkeley and his AB in Applied Math from Harvard University. For combining the subject matters of Statistics and Programming for data science, there is no one better. https://www.ischool.berkeley.edu/people/paul-laskowski"
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "Dr. Alex Hughes, also a professor in the School of Information, is a student favorite and teaches both Statistics and the hugely popular Field Experiments class. He recently built the R statistical programming bootcamp class for MIDS students. His knowledge of R and how to apply R, Statistics and field experiment methodologies is highly praised. Alex earned his PhD from UC San Diego and his BA in Economics and Political Science from University of Michigan. https://www.ischool.berkeley.edu/people/d-alex-hughes"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootHardProf"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 420,
+            "name": "MIDSBootApply"
+          }
+        ]
+      },
+      {
+        "name": "Application_TestScore_valid",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How long is the score valid for",
+          "when is my score valid until",
+          "I took my test",
+          "years ago"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "No more than five years may have passed between the GRE or GMAT test date and the application deadline. Make sure to send in your scores prior to the application deadline."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Type \"Start\" to go to the main menu, or \"Checklist\" to see the application requirement."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "TestScores"
+          }
+        ]
+      },
+      {
+        "name": "Careers_a_intro",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "What kind of jobs will MIDS get me",
+          "Types of career",
+          "career",
+          "careers",
+          "How difficult it is for MIDS graduates to transition into a data science career with no previous Data science background",
+          "how are the job prospects for MIDS graduates"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "MIDS provides interdisciplinary skills needed to solve complex human, social, economic, and health problems using data. MIDS graduates work in a variety of top data science jobs and companies."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Are you interested in advancing your career or switching to a new career?"
+            }
+          ]
+        },
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "careers_advance_career"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "careers_switch_career"
+          }
+        ]
+      },
+      {
+        "name": "MIDSProfessorsLaskowski",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Paul Laskowski"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "https://www.ischool.berkeley.edu/people/paul-laskowski"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_International_Eng",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Official Language is English",
+          "U.S Graduate School"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Great! In this case, you do not need to take the TOEFL or IELTS, nor submit a separate document to verify English proficiency. Instead, you must submit an official transcript (in English) from your school."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "To return to main menu, type \"Start\""
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Ask me other questions about the application process for international applicants, or type \"Checklist\" to see the application requirements."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSApplication_International_English"
+          }
+        ]
+      },
+      {
+        "name": "Application_RecommendationLetter",
+        "version": "11",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Letters of Recommendation",
+          "Recommendation letter"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select from below and see our general guideline!\",\"title\":\"Who do you plan on receiving recommendation letters from?\",\"buttons\":[{\"text\":\"Supervisor or employer\",\"value\":\"Supervisor\"},{\"text\":\"Professor\",\"value\":\"Professor\"},{\"text\":\"Client\",\"value\":\"Client\"},{\"text\":\"Family or Friends\",\"value\":\"Family or Friends\"},{\"text\":\"Co-worker\",\"value\":\"Co-worker\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "What matters the most in your recommendation letter is how closely your recommenders have worked with you and whether they can attest to your value as an employee, your professional accomplishments, and your personal qualities and interpersonal skills in an organizational context."
+            }
+          ]
+        },
+        "inputContexts": [],
+        "outputContexts": [
+          {
+            "turnsToLive": 7,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSRecommendationLetter"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_exit",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "exit"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "I hope the discussion about the MIDS curriculum difficulty was helpful."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Feel free to ask me more questions"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_end"
+          }
+        ]
+      },
+      {
+        "name": "lambda_agent",
+        "version": "2",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:098766315756:function:agent",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "can I talk to a person instead",
+          "is there anyone I can talk to",
+          "customer service",
+          "live agent",
+          "agent"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.EmailAddress",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Please enter your email."
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "name": "email"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Would you like to provide your email?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "name": "leave_email"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Are you trying to connect with an agent?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "need_agent"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_difficulty",
+        "version": "10",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "how hard is the curriculum",
+          "how hard is the program",
+          "how easy is the program",
+          "is the program doable",
+          "how hard is mids",
+          "how easy is mids",
+          "how challenging is the curriculum",
+          "Curriculum Difficulty",
+          "What background is recommended for the program"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The MIDS program is designed to train data science leaders to solve real-world problems."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "The online class structure provides flexibility for students with different backgrounds and interests."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "To help provide context on the program difficulty, do you have computer science experience or a programming background?"
+            }
+          ]
+        },
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_background"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_comp_sci_no",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "no",
+          "nope",
+          "not really",
+          "not at all",
+          "maybe",
+          "I'm not sure",
+          "no programming"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"title\":\"How much time can you commit to the program per week?\",\"buttons\":[{\"text\":\"Less than 10 hours per week\",\"value\":\"Less than 10 hours per week\"},{\"text\":\"10 to 20 hours per week\",\"value\":\"10 to 20 hours per week\"},{\"text\":\"20 to 30 hours per week\",\"value\":\"20 to 30 hours per week\"},{\"text\":\"30 or more hours per week\",\"value\":\"30 or more hours per week\"},{\"text\":\"I don't know\",\"value\":\"I don't know\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "That's okay! Many students take the “Introduction to Data Science Programming” to learn Python."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "This course  prepares students for further programming challenges in more advanced courses."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_background"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_time"
+          }
+        ]
+      },
+      {
+        "name": "MIDSCodingExperienceRequired",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Is coding experience required to attend MIDS ",
+          "is coding experience required for admissions to MIDS",
+          "coding experience",
+          "python experience required",
+          "R programming experience required",
+          "Do I need to know coding to complete mids",
+          "do i need to know how to code"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The program admission requirements state “Proficiency in programming languages, such as Python or Java, should be demonstrated by prior work experience or advanced coursework. Applicants who lack this experience in their academic or work background but meet all other admission requirements will be required to take the Introduction to Data Science Programming course in their first term.” You should definitely highlight any programming experience in your background for admissions to make yourself a stronger candidate."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Advise from students indicates plenty of students are admitted who do not come from programming backgrounds and succeed in MIDS. The first term Python class is quite good. While the majority of MIDS students do have programming backgrounds, there are also doctors adding data science to their experience set for medical research, marketers and liberal arts majors who complete the program. Also, you will encounter the R programming language in statistics classes. This too should not be a barrier. Students just pick this up as they go from code samples and an R Bridge course recently developed."
+            }
+          ]
+        }
+      },
+      {
+        "name": "General_MIDSsummary",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "What is MIDS",
+          "What will I learn at MIDS",
+          "Tell me more about MIDS",
+          "what does mids stand for"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The online Master of Information and Data Science (MIDS) is designed to educate data science leaders. The professional degree program prepares students to derive insights from real-world data sets, use the latest tools and analytical methods, and interpret and communicate their findings in ways that change minds and behaviors. The program features a multidisciplinary curriculum that draws on insights from the social sciences, computer science, statistics, management, and law."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "You will attend live, online classes each week, hosted using face-to-face video-conferencing technology. The platform encourages collaboration and connection with classmates and faculty, which allows students to forge real, lasting relationships. In addition to the live class sessions, you’ll complete self-paced coursework throughout each week and have access to social groups with classmates and one-on-one interaction with faculty."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "While all courses are delivered online, students are required to attend at least one, 3–4 day immersion on the UC Berkeley campus or in other locations relevant to data science. During the immersion, Master of Information and Data Science (MIDS) students benefit from meeting classmates and professors in person, participating in workshops, and networking with other data science professionals. Immersions are crafted to deliver additional learning, networking, and community-building opportunities to MIDS students."
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "Type \"start\" to see the list of topics you can ask us more about MIDS."
+            },
+            {
+              "groupNumber": 5,
+              "contentType": "PlainText",
+              "content": "Also please visit https://ischoolonline.berkeley.edu/data-science/ for more resources!"
+            }
+          ]
+        }
+      },
+      {
+        "name": "TestEmaiCollectAddressNo",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "no",
+          "No way",
+          "No Thanks"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Please feel free to ask me another question about MIDS or type main menu to return to the beginning menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "EnterEmail"
+          }
+        ]
+      },
+      {
+        "name": "HardestClass",
+        "version": "9",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:098766315756:function:hardest_class",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "what is the hardest class in mids",
+          "what is the most challenging class in MIDS",
+          "MIDS hardest course",
+          "hardest courses",
+          "hardest classes",
+          "what is the hardest class",
+          "what is the hardest course",
+          "what are the hardest classes",
+          "what is the most difficult course",
+          "difficult courses",
+          "MIDS hardest class",
+          "Return"
+        ],
+        "slots": [],
+        "followUpPrompt": {
+          "prompt": {
+            "messages": [
+              {
+                "groupNumber": 1,
+                "contentType": "PlainText",
+                "content": "Counselors who get feedback from all of the students say it is a tie between W261 Machine Learning at Scale and W266 Natural Language Processing with Deep Learning."
+              }
+            ],
+            "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"According to students\",\"title\":\"Would you like to learn more about the hardest MIDS classes?\",\"buttons\":[{\"text\":\"W261 Scalable ML\",\"value\":\"Scalable Machine Learning\"},{\"text\":\"W266 NLP\",\"value\":\"natural language processing\"}]}]}",
+            "maxAttempts": 3
+          },
+          "rejectionStatement": {
+            "messages": [
+              {
+                "groupNumber": 1,
+                "contentType": "PlainText",
+                "content": "OK. Let me know if you need any more help."
+              }
+            ]
+          }
+        },
+        "inputContexts": [],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 360,
+            "name": "HardClass"
+          }
+        ]
+      },
+      {
+        "name": "MIDSOrBootcampTime",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yes",
+          "sure",
+          "I do",
+          "check",
+          "ok"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Most boot camps can be accomplished in about 3-4 months full-time. However, a Master’s degree will take over a year."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "I encourage you to read this story from one student who gives insights into why they choose to spend the time on MIDS vs. attend a bootcamp or MOOC.   https://towardsdatascience.com/is-uc-berkeley-mids-worth-it-5ac645aa79f8"
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Can you spend at least 12 months full-time on education or 20 months part-time?"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootGPA"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootCost"
+          }
+        ]
+      },
+      {
+        "name": "Careers_c_companies",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "companies"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"imageUrl\":\"\",\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Here is a list of select employers from recent MIDS graduates:"
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Airbnb, Amazon, Apple, Autodesk, BCG, Capital One, Facebook, Google,NASA, PWC, Twilio, Workday"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Careers_companies"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "careers_d_return"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_return_list",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "return"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select any options below or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Office hours\",\"value\":\"Office hours\"},{\"text\":\"Group project work\",\"value\":\"Group project work\"},{\"text\":\"Flipped classroom model\",\"value\":\"Flipped classroom model\"},{\"text\":\"Optional content to prepare\",\"value\":\"Optional content to prepare\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Learn More About MIDS"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_return_list"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_flipped_classroom"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_end"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_group_project"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_optional_content"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_office_hours"
+          }
+        ]
+      },
+      {
+        "name": "GRETest",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Are GRE tests required",
+          "Are GMAT tests required",
+          "Are there admissions tests required",
+          "Do I need to take the GRE exam",
+          "GRE",
+          "gmat"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The UC Berkeley MIDS program does not require a GMAT or GRE test any longer. The school has not found a strong correlation between test scores and academic success."
+            }
+          ]
+        }
+      },
+      {
+        "name": "General_notCovered",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "dean",
+          "diversity initiative"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Sorry, I do not have information on this topic. Please type 'agent' if you would like someone to follow up with you on that."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSOrBootcampCost",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yes",
+          "sure",
+          "ok",
+          "y",
+          "I do"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "OK. Another factor that often influences the MIDS vs. bootcamp decision is cost. The MIDS degree tuition from UC Berkeley will cost just over $73,000 for all 9 required classes while a boot camp will cost from $2,000 - $20,000."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Bootcamps cost less, are completed faster, and they sound like they are covering the same topics. But as you can imagine, you will not learn as much in 4 months as you would if you spent 3 times that amount of time studying data science."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Would you be able to invest that much to gain the much deeper understanding of data science that a master's program provides?"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootCost"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootHard"
+          }
+        ]
+      },
+      {
+        "name": "Networking",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How easy is it to network with other students",
+          "networking opportunities"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "It is quite easy to network with both students and alumni."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "MIDS maintains a directory and the slack channel exists for all students present and past. The career services team can also introduce you to like-minded graduates and other students."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "MIDS for Life also keeps a strong connection between alumni and the school through continual education."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDS_Duration",
+        "version": "6",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:098766315756:function:mids_duration",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "How long will MIDS take to complete",
+          "How many years does MIDS take to complete",
+          "How long will it be before I can graduate",
+          "how many months is the mids program",
+          "mids duration",
+          "how quickly can i finish MIDS",
+          "how long is mids",
+          "how long does mids take"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Will you attend full-time or part-time?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "FTimePTime"
+          }
+        ]
+      },
+      {
+        "name": "Careers_ind_career_services",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "career services",
+          "what is career services",
+          "who are career services",
+          "career counseling",
+          "is there career counseling",
+          "career resources",
+          "job resources",
+          "what career services can I get from mids",
+          "what career resources can I get",
+          "MIDS career counseling",
+          "MIDS career services"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Through the careerservices provided by MIDS and the connections formed with industry leaders,students graduate ready to succeed in the data science field."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Our career servicesteam helps students form career plans to reach their goals. This includesfinding organizations and roles that fit with students’ interests, developingplans for career advancement, preparing effective resumes and interview skills,and setting up networking opportunities."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Careers_c_industry_contacts",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "industry contacts"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Students join a community of diverse classmates who work in a wide range of industries across the globe. They form strong connections with UC Berkeley faculty, including tenured professors, postdoctoral scholars, and leading industry practitioners who teach on campus and who are dedicated to remaining accessible to students throughout their careers."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Careers_industry_contacts"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "careers_d_return"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_time_high",
+        "version": "10",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "a lot",
+          "twenty to thirty hours per week",
+          "thirty or more hours per week"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select any options below or exit\",\"title\":\"Would you like to learn more about other types of academic support for students?\",\"buttons\":[{\"text\":\"Office hours\",\"value\":\"Office hours\"},{\"text\":\"Group project work\",\"value\":\"Group project work\"},{\"text\":\"Flipped classroom model\",\"value\":\"Flipped classroom model\"},{\"text\":\"Optional content to prepare\",\"value\":\"Optional content to prepare\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Most individual courses take between 10-20 hours per week, with advanced electives potentially requiring more of a commitment."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Most students who can commit 20 hours a week or more will take 2 course per semester. When taking advanced electives, you can always consider taking 1 course per semester to make it more manageable."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_time"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_office_hours"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_group_project"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_flipped_classroom"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_optional_content"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_end"
+          }
+        ]
+      },
+      {
+        "name": "lambda_classesPerTerm",
+        "version": "3",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-east-1:098766315756:function:class_per_term",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "can i take {class_count} classes a term",
+          "can i take {class_count} classes a semester"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Would you like to find out more about the classes MIDS offers?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "name": "catalog"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.NUMBER",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "How many classes are you planning to take?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "class_count"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Optional",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Are you trying to finish the program quickly?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "name": "speed"
+          }
+        ]
+      },
+      {
+        "name": "MIDSOrBootcampCostTryAgain",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "No",
+          "i dont know",
+          "I don't know",
+          "not sure"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Berkeley MIDS will graduate 255 students this year who all decided that it was worth the price tag to attend MIDS. Here is one person's story about why MIDS was worth it to her to land her dream job in data science at Uber."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "https://towardsdatascience.com/is-uc-berkeley-mids-worth-it-5ac645aa79f8"
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Would you like to continue this short tutorial on making the decision to attend MIDS or a bootcamp (yes or no)?"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootHard"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 270,
+            "name": "MIDSBootCostFinalNo"
+          }
+        ]
+      },
+      {
+        "name": "ClassesToGraduate",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How many classes will I take at MIDS",
+          "How many classes are required to graduate",
+          "how many classes per semester"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "MIDS requires 9 classes to graduate. 4 classes are required of all students and 5 are electives. Part-time students typically take 1 or 2 classes a term and full-time students usually take 3 classes per term. There will be 15-16 students in each class session."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Here is the course list link: https://www.ischool.berkeley.edu/courses/datasci"
+            }
+          ]
+        }
+      },
+      {
+        "name": "TOEFLTest",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Are foreign national applicants who graduated from a university in the U.S. required to take the TOEFL or IELTS",
+          "are TOEFL test required",
+          "TOEFL"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "If your academic work required for admissions to MIDS has been in a country other than the U.S., U.K., Australia, or English-speaking Canada, then a TOEFL test is required."
+            }
+          ]
+        }
+      },
+      {
+        "name": "General_thumbs_down",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Thumbs Down",
+          "That did not answer my question",
+          "That was not helpful",
+          "You don't understand me"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Sorry I could not answer that question. Would you like to ask another question about MIDS?"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_InternationalStudent",
+        "version": "12",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "International Applicants",
+          "Foreign Students",
+          "Overseas applicants",
+          "International student",
+          "International students",
+          "International applicant"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"This will exempt you from TOEFL/IELTS requirement\",\"title\":\"Does any of the following apply to you?\",\"buttons\":[{\"text\":\"Undergraduate degree from English-speaking country\",\"value\":\"Official Language is English\"},{\"text\":\"U.S Graduate degree with at least 3.0 GPA\",\"value\":\"U.S Graduate School\"},{\"text\":\"At least 1 year in U.S university with B or better grade\",\"value\":\"one year in U.S university\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Our MIDS program is designed to be accessible from anywhere in the world, and the online learning experience is the same for all students."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "This is also true regarding the application requirement, but International applicants may need to provide materials to verify English proficiency to complete their application. Download https://ischoolonline.berkeley.edu/wp-content/uploads/sites/37/2021/01/OfficialDocumentGuidelines-1.pdf for more information, or answer a few questions to find out."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "At anytime, type \"Checklist\" to see the application requirements or \"Start\" to go back to the main menu."
+            }
+          ]
+        },
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSApplication_International_English"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "InternationalApplicant"
+          }
+        ]
+      },
+      {
+        "name": "General_average_salary",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "average income",
+          "how much will I make",
+          "what will my pay increase be"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "According to the 2019 MIDS career report, MIDS graduates had a median salary of 126,000. MIDS graduates in the Bay Area have a median salary of 150,000. International graduates have a median salary of 74,000."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_TestScores",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Do I need to submit GRE or GMAT score",
+          "GMAT score required",
+          "GRE score required",
+          "required test score",
+          "Test Scores"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Submission of GRE/GMAT scores are optional for admission to MIDS.  GRE/GMAT scores may be submitted if you feel they would benefit your application. Candidates who might benefit from providing scores include those with a mediocre undergraduate performance, limited quantitative experience, and/or strong previous scores."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Would you like to know how your test score compares against the MIDS student class?"
+            }
+          ]
+        },
+        "inputContexts": [],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "TestScores"
+          }
+        ]
+      },
+      {
+        "name": "MIDSorBootcampHard",
+        "version": "8",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yes",
+          "sure",
+          "Yes",
+          "OK"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "All right. We have covered the clear deciding factors of cost and time. Now the decision becomes more nuanced."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Just because you can spend 12 months studying and have the funding does not mean that earning a master’s degree is the right decision. Is it really worth it to you is a very personal decision."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Here is one line of thinking applicants employ to decide. Ask yourself, do I want a deeper level of data science education combined with the credibility that a master’s degree from one of the very top-rated STEM universities in the world demonstrates to employers? Did you answer yes?"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootHard"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootApply"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootHard"
+          }
+        ]
+      },
+      {
+        "name": "General_GPA",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "GPA",
+          "GPA requirement",
+          "Minimum GPA"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Although there is no hard GPA requirement, successful candidates generally have a superior scholastic record, normally well above a 3.0 GPA"
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSProfessorsHughes",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Alex Hughes"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "https://www.ischool.berkeley.edu/people/d-alex-hughes"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_International_CountryException",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Can I join the program from any country",
+          "Sanction",
+          "Cuba",
+          "Iran",
+          "North Korea",
+          "Sudan",
+          "Syria",
+          "Ukraine"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "CustomPayload",
+              "content": "Per the Berkeley International Office Immigration Policy Updates and FAQs:\n\n\"the U.S. Department of the Treasury's Office of Foreign Asset Control (OFAC) has established regulations that prohibit U.S. persons (including the University of California) from providing services - including remote educational services - to individuals in certain sanctioned countries without a general or specific license. The list of OFAC sanctioned countries currently includes: Cuba, Iran, North Korea, Sudan, Syria and the Ukraine-Crimea Region.\" \nPlease contact the UC Berkeley Admissions team with questions. "
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Type \"Checklist\" to see the application requirements, or \"Start\" to return to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "InternationalApplicant"
+          }
+        ]
+      },
+      {
+        "name": "MIDSAcceptanceRate",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How hard is it to get into berekeley graduate school",
+          "What is the acceptance rate into MIDS",
+          "What is the profile of admitted students to MIDS",
+          "what is the acceptance rate at berkeley mids",
+          "how hard is it to get into MIDS"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Here is the 2017 admitted students profile. There were 280 students admitted. The average domestic undergraduate cumulative GPA was 3.49. 27% of the class were female and students were from 15 countries."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "The quality of students admitted to MIDS compares favorably to those admitted to the on campus Master of Information Management and Systems (MIMS) program. Average undergraduate CGPAs are similar: 3.49 MIDS v. 3.53 MIMS, as are GRE quant scores: 83% MIDS v. 81% MIMS and GRE verbal scores: 83% MIDS v. 85% MIMS although GRE scores are no longer required."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Berkeley does not seem to publish an acceptance rate. Some information online indicated that for a recent class, the enrolled to applicant rate was 15.8%."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Careers_ind_jobs",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "types of jobs",
+          "what types of jobs do graduates get",
+          "what job will I get",
+          "can I become a data scientist",
+          "whats jobs do MIDS students get",
+          "jobs",
+          "job titles"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Here is a list ofselect job titles from recent MIDS graduates:"
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Data Analyst, DataScience Manager, Data Scientist, Policy Analyst, Product Manager, SalesEngineer, Software Engineer, Technology Consultant, UX Designer, UX Researcher"
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSTimePerWeek",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "How much time will I need to spend on MIDS per week",
+          "How long will I need to study each week",
+          "How much study time is required for MIDS"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "If you attend full-time, most students spend 40 hours per week. For part-time, the first term requires 2 classes which typically takes 20-25 hours per week for both. After the first term, each class takes about 15-20 hours per week and you may take 1 or more classes."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Application_TestScore_continue",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "yes",
+          "yeah",
+          "yeap",
+          "mediocre undergraduate performance",
+          "strong test score",
+          "test score is high",
+          "limited quantitative experience",
+          "undergraduate gpa low",
+          "low gpa"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "That's fantastic! In this case, please make sure to submit your score before the application deadline. The school code for UC Berkeley is 1634. The department code for the I School is 0404."
+            },
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Got it. In this case, please make sure to submit your score before the application deadline. The school code for UC Berkeley is 1634. The department code for the I School is 0404."
+            },
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "That makes sense. In this case, please make sure to submit your score before the application deadline. The school code for UC Berkeley is 1634. The department code for the I School is 0404."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Ask me more questions about test scores, or type \"Checklist\" to see the application requirements."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Ask me more questions about test scores, or type \"Start\" to go back to main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "TestScore_Helps"
+          }
+        ]
+      },
+      {
+        "name": "Careers_d_return",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "return",
+          "Return"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Career services\",\"value\":\"Career services\"},{\"text\":\"Select companies\",\"value\":\"Select companies\"},{\"text\":\"Industry contacts\",\"value\":\"Industry contacts\"},{\"text\":\"Select jobs\",\"value\":\"Select jobs\"},{\"text\":\"Alumni network\",\"value\":\"Alumni network\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Learn More About MIDS"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "careers_d_return"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_alumni_network"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_career_services"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_companies"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_industry_contacts"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Careers_jobs"
+          }
+        ]
+      },
+      {
+        "name": "MIDSorBootcampHardNo",
+        "version": "14",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "no",
+          "nope",
+          "Return",
+          "no i didnt",
+          "no im not convinced",
+          "I dont know",
+          "more",
+          "not sure"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Choose an area of interest. Select end if done.\",\"title\":\"MIDS vs. Bootcamp (or MOOC) Considerations\",\"buttons\":[{\"text\":\"Curriculum\",\"value\":\"Curriculum\"},{\"text\":\"Professors\",\"value\":\"Professors\"},{\"text\":\"Student Reviews\",\"value\":\"Student Reviews\"},{\"text\":\"MIDS for Life\",\"value\":\"MIDS for Life\"},{\"text\":\"End\",\"value\":\"End\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Let's look at some information on other areas of MIDS applicants often consider in making their decision."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootApply"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 240,
+            "name": "MIDSBootEnd"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootHardProf"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 240,
+            "name": "MIDSBootHardCurriculum"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootHardStudentReview"
+          },
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 240,
+            "name": "MIDSBootHardMIDSForLife"
+          }
+        ]
+      },
+      {
+        "name": "Survey",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "survey"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Please access the survey at this link: https://berkeley.qualtrics.com/jfe/form/SV_eA4CrONce3zRHjo  Thank you for your time."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSForLife",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "MIDS For Life"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return to go to the prior menu or exit to start chat again\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Here is something you may not have heard about. In a dynamic field such as data science, it is crucial for professionals to continue developing their skills throughout their careers. MIDS for Life keeps MIDS alumni connected to leading data science practices via world-class datascience@berkeley course content."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "MIDS for Life offers alumni lifelong access to the I School Virtual Campus, where students can retrieve all previously completed MIDS course work and recorded class sessions. Alumni may also view the most up-to-date asynchronous course content, including content for newly released courses, at no charge."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootHardMIDSForLife"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 510,
+            "name": "MIDSBootApply"
+          }
+        ]
+      },
+      {
+        "name": "MIDSStudentReviews",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Student Reviews",
+          "what do students say about MIDS",
+          "MIDS reviews"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return to go to the prior menu or exit to start chat again\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "It is really helpful to hear what students and graduates are saying. Here are some reviews I found on the internet."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "https://towardsdatascience.com/is-uc-berkeley-mids-worth-it-5ac645aa79f8"
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "https://towardsdatascience.com/review-on-uc-berkeley-master-of-information-and-data-science-mids-program-fc4ae2ef7f9c"
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "https://ischoolonline.berkeley.edu/experience/alumni-profiles/"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootHardStudentReview"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 480,
+            "name": "MIDSBootApply"
+          }
+        ]
+      },
+      {
+        "name": "No",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "no",
+          "exit"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "OK, Ask me another question if you care to."
+            }
+          ]
+        }
+      },
+      {
+        "name": "BootcampMIDSDifference",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "how is this different than a bootcamp",
+          "how is the degree not like a bootcamp",
+          "Which is better getting the berkeley mids degree of attending a data science bootcamp",
+          "what is the difference between getting a masters degree in data science and a bootcamp",
+          "bootcamp"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Bootcamps are typically 3-4 month part-time or full-time programs that rapidly cover and teach important data science topics and tools. MIDS is a more in depth master’s degree program in data science that typically takes 1-2 years to complete depending on whether a student attends part-time or full-time."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "The MIDS curriculum is best understood by reviewing a page from UC Berkeley in the last message below. Pay particular attention to the short videos on each class by the professors you will be learning from each week."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Each MIDS class, on an important data science topic, takes place over 15 weeks. Students typically will typically spend 15-20 hours a week on assignments, lectures and live sessions for each class. The two most rigorous elective classes, which most believe are scalable machine learning and natural language processing, go really deep and some students spend 25-30 hours per week on each class."
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "If you compare this to bootcamps, one class over almost 4 months for 15 hours a week in MIDS is what many bootcamps advertise as their whole curriculum covering all the buzz words in data science briefly."
+            },
+            {
+              "groupNumber": 5,
+              "contentType": "PlainText",
+              "content": "There is a reason MIDS is a master's degree. You will graduate and be seen as a top tier job candidate with broad and deep skills. There is no easy button to learning data science. It takes time, study and practice not a series of tutorials packaged together as a program. You can check out the MIDS curriculum here: https://ischoolonline.berkeley.edu/data-science/curriculum/"
+            }
+          ]
+        }
+      },
+      {
+        "name": "General_technical_skills",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what technical skills do I learn",
+          "do I learn R",
+          "R",
+          "do I learn python",
+          "python",
+          "deep learning",
+          "tensorflow",
+          "spark",
+          "map reduce",
+          "do I learn tensorflow",
+          "learn python",
+          "learn R",
+          "learn to code",
+          "natural language programming"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Careers_c_alumni_network",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "alumni network"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Berkeley Career Network is a career mentorship and networking service for all UC Berkeley students and alumni. Join the Berkeley Career Network and you'll be connected with successful Cal alumni who are actively seeking the opportunity to support current students in their career endeavors through active conversation forums, 1:1 connections, informational interviews, and thought leadership."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Careers_alumni_network"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "careers_d_return"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_flipped_classroom",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "flipped classroom"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The MIDS program has a flipped classroom model, which means you watch 1-2 hours of prerecorded material from top professors each week at your own pace."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "After reviewing the content, you then use the weekly working sessions in class to discuss the material more in depth, work in breakout sessions, or code examples together as a class."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "The flipped classroom model allows you to review the content again if you have questions about the material or want to recreate the example problems on your own time."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_flipped_classroom"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_return_list"
+          }
+        ]
+      },
+      {
+        "name": "Application_International_Internet",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "What other exceptions are there for international applicants",
+          "Is there any other factors to consider as international applicant",
+          "limitation",
+          "accessing MIDS"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Although MIDS program is accessible to all students around the world, please note that your experience may be impacted in certain countries or regions where use of tool sets needed for course work is limited or prohibited my law.."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "For example, we have been informed that there may be limitations on accessing Google resources in China."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Type \"Checklist\" to see the application requirements, or \"Start\" to return to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "InternationalApplicant"
+          }
+        ]
+      },
+      {
+        "name": "Application_TestScore_Skip",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "No",
+          "Not really",
+          "nah",
+          "I don't",
+          "I do not"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "That's ok! You should prioritize your time on writing strong personal statements, coordinating recommendation letters, and double, triple checking the required documents."
+            },
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "That's perfectly fine!  You should prioritize your bandwidth for writing strong personal statements, coordinating recommendation letters, and double, triple checking the required documents."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Type \"Start\" to go back to the main menu, or \"Checklist\" to see the application requirements."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "TestScore_Helps"
+          }
+        ]
+      },
+      {
+        "name": "MIDSOrBootcampCostNO",
+        "version": "6",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "No",
+          "Nope",
+          "Nada",
+          "No way",
+          "i don't know",
+          "not sure"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "OK, if you are not certain then I would suggest perhaps trying some Coursera data science classes or a boot camp out first. If the subject really intrigues you, you can always earn a full master’s degree in data science in the future. You’ll be an even stronger applicant to MIDS!"
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Ask me another question about MIDS if you care to."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootCostFinalNo"
+          }
+        ],
+        "outputContexts": []
+      },
+      {
+        "name": "General_how_are_you",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "how are you",
+          "how's it going",
+          "what's up"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "I'm good. Thanks for asking :) "
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Please let me know if I can answer any more questions."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSOrMOOC",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Should I attend Berkeley MIDS or a MOOC",
+          "How does MIDS compare to coursera or udemy or other MOOCs",
+          "What is better MIDS or a MOOC",
+          "Berkeley Master's of MOOC or Coursera",
+          "MOOC",
+          "MIDS or MOOC",
+          "how is mids better than coursera or udemy or other MOOCs",
+          "How does MIDS compare to coursera",
+          "How does MIDS compare to udemy",
+          "How does MIDS compare to other MOOCs",
+          "how is mids better than coursera",
+          "how is mids better than udemy",
+          "how is mids better than MOOCs"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "MOOCs are a great way to get started in data science. Many MIDS students have taken MOOC classes from Coursera, Udemy and other providers before deciding to enroll in and earn a master's degree in data science."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "The advantage of MOOCs is obviously the low cost. There are some great courses online too with Andrew Ng's course in machine learning being one of the most talked about classes."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "The disadvantage of MOOCs and why students turn to Berkeley to learn data science is the curriculum is structured for you so you know what you really need to learn, the depth of instruction from world class experts and faculty, and the proof that you actually did the course work and earned a master's degree from one of the top STEM universities in the world. Top employers in data science really value graduate degrees and the training behind the degree."
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "Also, with MOOCs you are really studying on your own. While online, Berkeley is not like MOOC online. Every week, you have live classes and you see and talk to the same ~15 people in your class and get to know them and build a network in data science. The atmosphere is very cooperative and most of the students study together and help each other. This is like the live school experience without the commute and parking hassle."
+            },
+            {
+              "groupNumber": 5,
+              "contentType": "PlainText",
+              "content": "Here is an article from one MIDS student about why they made the decision to attend MIDS after starting with MOOC content. https://towardsdatascience.com/is-uc-berkeley-mids-worth-it-5ac645aa79f8.  If you want to learn more about MIDS just type \"more\"."
+            }
+          ]
+        },
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "MIDSBootApply"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_group_project",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "group project"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Most courses focus on a group project work model. This allows students with different backgrounds to learn from each other and work together to solve interesting problems."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_group_project"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_return_list"
+          }
+        ]
+      },
+      {
+        "name": "HardestClassNLP",
+        "version": "8",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Natural Language Processing",
+          "nlp"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Exit to ask another question\",\"title\":\"Select return to see another class\",\"buttons\":[{\"text\":\"Return\",\"value\":\"MIDS hardest class\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "In W266, students new to Tensorflow learn quite a bit. Most students spend 25 hours a week on this class so I advise taking it separately."
+            }
+          ]
+        },
+        "inputContexts": [],
+        "outputContexts": []
+      },
+      {
+        "name": "MIDSWorthIt",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "is mids worth it",
+          "is getting a master's degree in data science worth it",
+          "is a masters from UC Berkeley worth the effort",
+          "is a degree from berkeley worth it",
+          "Is there an ROI for a graduate degree fro Berkeley MIDS",
+          "Will MIDS pay off"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "It is really helpful to hear what students and graduates are saying. Here are some reviews I found on the internet."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "https://towardsdatascience.com/is-uc-berkeley-mids-worth-it-5ac645aa79f8"
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "https://towardsdatascience.com/review-on-uc-berkeley-master-of-information-and-data-science-mids-program-fc4ae2ef7f9c"
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "https://ischoolonline.berkeley.edu/experience/alumni-profiles/"
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDS_Duration_PartTime",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "part time",
+          "part-time",
+          "what if i attend part time"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Each class takes 15-20 hours. You could complete as fast as 20 months or 32 months if you take one class per term."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Curriculum_office_hours",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "office hours"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "All courses have numerous office hours each week to accommodate different student schedules. You can attend office hours with your professor, other professors who are teaching that course, or with the teaching assistants helping on the course."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "This gives you a chance to discuss potential class topics in more depth and work through problems on course content, problem sets, or group projects."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_office_hours"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_return_list"
+          }
+        ]
+      },
+      {
+        "name": "Application_AdmissionsCycle_soon",
+        "version": "8",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Yes",
+          "Yeah",
+          "yea",
+          "true"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Sounds like you only have so much time left to complete your application! Please thoroughly review the requirements again and ensure you prioritize items that may depend on third party to complete. This includes your recommendation letter, official transcript (English translation, if applicable), and test scores."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "If you haven't already, start your application now at https://apply.datascience.berkeley.edu/signup"
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "CustomPayload",
+              "content": "Here are a few things you should consider:\n\n- Many schools issue transcripts electronically, either through their own web services or through vendors. If available, please specify that your transcript(s) be sent to applicationservices@datascience.berkeley.edu. This will expedite the delivery of your transcript(s). \n- Start your conversation early with whom you plan on receiving recommendation letters from. Writing a thoughtful recommendation letter takes time- make sure you give them ample time to plan in advance and avoid having to rush to meet your application deadline.\n- All documents you submit must be in English. Otherwise a translated copy must be provided by an American Translation Association certified translator. \n- Time between admissions notification and the start of the term can be short, we strongly recommend that you have all necessary official documents in hand and are prepared to submit them as quickly as possible if you are recommended for admission. \n"
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "Would you like to talk more on our tips on recommendation letters? Type in \"Recommendation letters\"."
+            },
+            {
+              "groupNumber": 4,
+              "contentType": "PlainText",
+              "content": "If you are a international applicant and want to learn about additional application requirements, please type in \"International applicant\"."
+            },
+            {
+              "groupNumber": 5,
+              "contentType": "PlainText",
+              "content": "Otherwise, type \"Start\" to go back to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDS_applyingSoon"
+          }
+        ]
+      },
+      {
+        "name": "Application_International_Timezone",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Timezone",
+          "time zone",
+          "time difference",
+          "different time zone"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The I School is committed to allowing greater access to the program via the online platform. Classes are generally held during the week between 4:00pm and 8:00pm in Pacific Standard Time, translating to a morning class for students in Asia or early mornings for students in Europe. Students should note that spaces in classes are limited and offered on a first-come, first-serve basis. If you require a specific course section, you should make sure to register for classes as soon as registration opens."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Type \"Checklist\" to see the application requirements, or \"Start\" to return to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "InternationalApplicant"
+          }
+        ]
+      },
+      {
+        "name": "MIDSOrBootCampNo",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "No",
+          "Nope"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "The MIDS degree is a full master’s degree from UC Berkeley and as such requires an undergraduate degree with GPA normally well above 3.0 to be admitted. So, a bootcamp is a better option for you at this time."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "UC Berkeley does also offer an undergraduate program of data science study too. Info can be found at https://data.berkeley.edu/academics/data-science-undergraduate-studies/data-science-major."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Ask me another question about MIDS if you care to."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootGPA"
+          }
+        ],
+        "outputContexts": []
+      },
+      {
+        "name": "Application_Recommend_Good",
+        "version": "9",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Supervisor",
+          "Client",
+          "Professor",
+          "Employer",
+          "Manager",
+          "No"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Great! We prefer that letters come from your current direct supervisor or a former employer.  The title or status of those you select is not important."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "The best recommendations would include details on your recommender's personal experience from having closely worked with you. Specific details on the impact of your work as well as why they believe you to be a successful candidate for the program will make the recommendation more solid."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Ask me more questions about recommendation letter, or type \"Start\" to return to the main menu."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Ask me more questions about recommendation letter, or type \"Checklist\" to see the application requirements again."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Type \"Checklist\" to see the application requirements again, or \"Start\" to return to the main menu."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSRecommendationLetter"
+          }
+        ]
+      },
+      {
+        "name": "MIDSInPerson",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Is this degree delivered completely online",
+          "Are there in person classes",
+          "what are the in person requirements in MIDS",
+          "Are there opportunities to meet in person"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "All classes and coursework are delivered entirely online. Students must attend live weekly class sessions online, as well as a three to four-day immersion on the UC Berkeley campus or in other locations relevant to data science. Immersion is crafted to deliver additional learning, networking, and community- building opportunities but is currently not being offered or required due to the pandemic. "
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Beyond that, past students advise that they have met many people from MIDS, especially those in larger geographies like the bay area, New York, Washington D.C. etc. People host get togethers, lunches, or just meet one on one. Everyone is on Slack including the alumni and you can find them in the directory."
+            }
+          ]
+        }
+      },
+      {
+        "name": "Careers_c_career_services",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "career services"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "Through the career services provided by MIDS and the connections formed with industry leaders, students graduate ready to succeed in the data science field."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Our career services team helps students form career plans to reach their goals. This includes finding organizations and roles that fit with students’ interests, developing plans for career advancement, preparing effective resumes and interview skills, and setting up networking opportunities."
+            },
+            {
+              "groupNumber": 3,
+              "contentType": "PlainText",
+              "content": "Students have in-person and online opportunities to explore possible career paths within this diverse industry and connect with leaders and employers. The I School job portal and customized resume books are just a few of the tools used to directly connect students with engaging career opportunities."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Careers_career_services"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "careers_d_return"
+          }
+        ]
+      },
+      {
+        "name": "General_name",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what is your name",
+          "what's your name",
+          "your name",
+          "what are you called",
+          "do you have a name",
+          "Alexa"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "I am the MIDS application advisor chatbot. I do not have a formal name at this time."
+            }
+          ]
+        }
+      },
+      {
+        "name": "MIDSOrBootcampHardNoEnd",
+        "version": "5",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "End"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "I hope our discussion about how other applicants made their decision about whether to attend MIDS or a Bootcamp (or MOOC) was useful."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "Feel free to ask me more questions."
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "MIDSBootEnd"
+          }
+        ]
+      },
+      {
+        "name": "Curriculum_optional_content",
+        "version": "3",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "optional content"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Select return for the previous menu or exit\",\"title\":\"Learn More About MIDS\",\"buttons\":[{\"text\":\"Return\",\"value\":\"Return\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "To help prepare for the program, some students choose to review extra external resources prior to starting the program."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "You can learn about optional online courses here: https://www.ischool.berkeley.edu/programs/data-science-certificate/python"
+            }
+          ]
+        },
+        "inputContexts": [
+          {
+            "name": "Curriculum_optional_content"
+          }
+        ],
+        "outputContexts": [
+          {
+            "turnsToLive": 5,
+            "timeToLiveInSeconds": 90,
+            "name": "Curriculum_return_list"
+          }
+        ]
+      },
+      {
+        "name": "General_meet_classmates_in_person",
+        "version": "1",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "can I meet my classmates in person",
+          "meet people in person",
+          "make friends in person",
+          "can I network live",
+          "can I network in person"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "MIDS students come from across the United States and the world. There are slack channels and organized meet up sessions for students and alumni in many cities, both for MIDS and for Cal Berkeley more broadly."
+            },
+            {
+              "groupNumber": 2,
+              "contentType": "PlainText",
+              "content": "MIDS students can meet other students in person at the immersion experience. Currently offered three times a year, each three- to four-day immersion is crafted to deliver additional learning, networking, and community-building opportunities to students."
+            }
+          ]
+        }
+      },
+      {
+        "name": "HardestClassSML",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "scalable machine learning"
+        ],
+        "slots": [],
+        "conclusionStatement": {
+          "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[{\"subTitle\":\"Exit to ask another question\",\"title\":\"Select return to see another class\",\"buttons\":[{\"text\":\"Return\",\"value\":\"MIDS hardest class\"},{\"text\":\"Exit\",\"value\":\"Exit\"}]}]}",
+          "messages": [
+            {
+              "groupNumber": 1,
+              "contentType": "PlainText",
+              "content": "In W261, writing and debugging Map/Reduce jobs can take some time. This class seems to take students 30 hours per week. I would advise taking this class all alone in a term."
+            }
+          ]
+        },
+        "inputContexts": [],
+        "outputContexts": []
+      }
+    ],
+    "voiceId": "0",
+    "childDirected": false,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 1200,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please rephrase that entry?"
+        }
+      ],
+      "maxAttempts": 3
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Please feel free to ask another question about MIDS or type main menu to return to the beginning."
+        }
+      ]
+    },
+    "detectSentiment": false,
+    "nluIntentConfidenceThreshold": 0.75,
+    "enableModelImprovements": true
+  }
+}
