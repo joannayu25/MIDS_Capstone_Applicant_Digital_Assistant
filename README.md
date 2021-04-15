@@ -32,7 +32,7 @@ Advantages:
 * Scales Automatically
 * Leverages Alexa NLP to Create Speech Language Understanding System
 
-### Model Limitation
+## Model Limitation
 *Limitations*
 * Inflexible model - proprietary NLP engine
 * Rule-based framework - limited conversational breadth
@@ -46,14 +46,14 @@ Advantages:
 * Multi-turn design
 * Intent chaining with context
 
-### User Testing
+## User Testing
 * Three rounds of user testing (phased based on use case development)
 * User survey - 3 dimensions: 
 1. Ability to understand
 2. Relevancy of response
 3. Overall conversational capability
 
-### Metrics & Evaluation
+## Metrics & Evaluation
 * Percentage of missed questions (utterances)
 * Length of conversation
 * Qualitative review of missed questions
