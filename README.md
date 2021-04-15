@@ -26,7 +26,7 @@ The digital assistant is powered by a variety of sources:
 ### AI-as-a-Service Model
 **Amazon Lex** - AI as a Service for building conversational interfaces into any application using voice and text.
 
-Advantage:
+Advantages:
 * Cost-Effective
 * Short Time to Market
 * Scales Automatically
@@ -46,6 +46,17 @@ Advantage:
 * Multi-turn design
 * Intent chaining with context
 
+### User Testing
+* Three rounds of user testing (phased based on use case development)
+* User survey - 3 dimensions 
+1. Ability to understand
+2. Relevancy of response
+3. Overall conversational capability
+
+### Metrics & Evaluation
+* Percentage of missed questions (utterances)
+* Length of conversation
+* Qualitative review of missed questions
 
 ## Other Work
 ### Excel Template Digital Assistant
@@ -62,3 +73,21 @@ Run `./deployment.sh`
 This template runs CloudFormation in the `us_east1` region. 
 
 Acknowledgement: this work is based on the work of Cyrus Wong (https://github.com/wongcyrus/ExcelLexBot)
+
+## Directory of Files
+**Code and Export/**
+
+*Chatbot JSON export* folder contains the json file to load the chatbot in Amazon Lex.
+
+*Lambda samples* folder contains sample lambda functions used in the chatbot. Each intent comes with a yaml and a python file. 
+
+*Metrics* folder contains the survey from the user testing and the jupyter notebook used to analyze the chat log. 
+
+*Web Deliverable* folder contains the Javascript used to create the Lex web UI iframe.
+
+**Excel** folder contains the files for the Excel Template Digital Assistant described above.
+
+**Images** folder contains images used in the repo.
+
+**Presentations** folder contains presentation slides for this project.
+
