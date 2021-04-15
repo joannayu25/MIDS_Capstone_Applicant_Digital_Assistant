@@ -48,7 +48,7 @@ Advantages:
 
 ### User Testing
 * Three rounds of user testing (phased based on use case development)
-* User survey - 3 dimensions 
+* User survey - 3 dimensions: 
 1. Ability to understand
 2. Relevancy of response
 3. Overall conversational capability
@@ -75,19 +75,12 @@ This template runs CloudFormation in the `us_east1` region.
 Acknowledgement: this work is based on the work of Cyrus Wong (https://github.com/wongcyrus/ExcelLexBot)
 
 ## Directory of Files
-**Code and Export/**
-
-*Chatbot JSON export* folder contains the json file to load the chatbot in Amazon Lex.
-
-*Lambda samples* folder contains sample lambda functions used in the chatbot. Each intent comes with a yaml and a python file. 
-
-*Metrics* folder contains the survey from the user testing and the jupyter notebook used to analyze the chat log. 
-
-*Web Deliverable* folder contains the Javascript used to create the Lex web UI iframe.
-
-**Excel** folder contains the files for the Excel Template Digital Assistant described above.
-
-**Images** folder contains images used in the repo.
-
-**Presentations** folder contains presentation slides for this project.
+* `Code and Export/Chatbot JSON export` folder contains the json file to load the chatbot in Amazon Lex.
+* `Code and Export/Lambda samples` folder contains sample lambda functions used in the chatbot. Each intent comes with a yaml and a python file. 
+* `Code and Export/Metrics` folder contains the survey from the user testing and the jupyter notebook used to analyze the chat log. 
+* `Code and Export/User Research` folder contains the results of the user research.
+* `Code and Export/Web Deliverable` folder contains the Javascript used to create the Lex web UI iframe.
+* `Excel` folder contains the files for the Excel Template Digital Assistant described above.
+* `Images` folder contains images used in the repo.
+* `Presentations` folder contains presentation slides for this project.
 
